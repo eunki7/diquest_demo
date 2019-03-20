@@ -5,12 +5,22 @@
 
     <h1>TextRank</h1>
     <div class="row" style="border: 3px solid gray; padding: 20px 20px;">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">금지어</div>
+                <div class="panel-body">
+                    <textarea class="form-control" id="stopwords" aria-label="stopwords"
+                              placeholder="금지어를 ','로 입력하세요" style="height: 100px;"></textarea>
+                </div>
+            </div>
+        </div>
 
         <div class="col-md-5 col-sm-5 col-xs-5">
             <div class="panel panel-info">
                 <div class="panel-heading">원문 텍스트</div>
                 <div class="panel-body">
-                    <textarea class="form-control" id="originalText" aria-label="originalText" placeholder="원문 텍스트를 입력하세요" style="height: 417px"></textarea>
+                    <textarea class="form-control" id="originalText" aria-label="originalText"
+                              placeholder="원문 텍스트를 입력하세요" style="height: 417px"></textarea>
                 </div>
             </div>
         </div>
@@ -31,9 +41,11 @@
                 </div>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-2" style="height: 235px; line-height: 235px; text-align: center;">
-                <button class="btn btn-default" id="textRankBtn" type="button" style="vertical-align: middle; margin: 0 auto;">요약</button>
+                <button class="btn btn-default" id="textRankBtn" type="button"
+                        style="vertical-align: middle; margin: 0 auto;">요약
+                </button>
             </div>
-            <div class="col-md-10 col-sm-10 col-xs-10">
+            <div class="col-md-6 col-sm-6 col-xs-6">
                 <div class="panel panel-info" style="height: 235px;">
                     <div class="panel-heading">요약 키워드</div>
                     <div class="panel-body">
@@ -50,43 +62,25 @@
                 </div>
             </div>
 
-        </div>
-{#        <div class="col-md-2 col-sm-2 col-xs-2" style="height: 510px; line-height: 510px; text-align: center;">#}
-{#            <button class="btn btn-default" id="textRankBtn" type="button" style="vertical-align: middle; margin: 0 auto;">요약</button>#}
-{#        </div>#}
-{##}
-{#        <div class="col-md-5 col-sm-5 col-xs-5">#}
-{#            <div class="panel panel-info" style="height: 235px;">#}
-{#                <div class="panel-heading">요약 문장</div>#}
-{#                <div class="panel-body">#}
-{#                    <div class="form-horizontal">#}
-{#                        <div class="form-group">#}
-{#                            <div class="col-sm-12">#}
-{#                                <input type="text" class="form-control" id="sentence1" style="margin-bottom: 15px">#}
-{#                                <input type="text" class="form-control" id="sentence2" style="margin-bottom: 15px">#}
-{#                                <input type="text" class="form-control" id="sentence3" style="margin-bottom: 15px">#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{##}
-{#            <div class="panel panel-info" style="height: 235px;">#}
-{#                <div class="panel-heading">요약 키워드</div>#}
-{#                <div class="panel-body">#}
-{#                    <div class="form-horizontal">#}
-{#                        <div class="form-group">#}
-{#                            <div class="col-sm-12">#}
-{#                                <input type="text" class="form-control" id="keyword1" style="margin-bottom: 15px">#}
-{#                                <input type="text" class="form-control" id="keyword2" style="margin-bottom: 15px">#}
-{#                                <input type="text" class="form-control" id="keyword3" style="margin-bottom: 15px">#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading">텍스트 글자수</div>
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" id="textLength" style="margin-bottom: 15px">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
+
+    </div>
     </div>
 
     <script>
@@ -97,7 +91,7 @@
                 var cookies = document.cookie.split(';');
                 for (var i = 0; i < cookies.length; i++) {
                     var cookie = jQuery.trim(cookies[i]);
-        // Does this cookie string begin with the name we want?
+                    // Does this cookie string begin with the name we want?
                     if (cookie.substring(0, name.length + 1) == (name + '=')) {
                         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                         break;
@@ -106,14 +100,16 @@
             }
             return cookieValue;
         }
+
         function csrfSafeMethod(method) {
-        // these HTTP methods do not require CSRF protection
+            // these HTTP methods do not require CSRF protection
             return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
         }
-        $(document).ready(function() {
+
+        $(document).ready(function () {
             var csrftoken = getCookie('csrftoken');
             $.ajaxSetup({
-                beforeSend: function(xhr, settings) {
+                beforeSend: function (xhr, settings) {
                     if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
                         xhr.setRequestHeader("X-CSRFToken", csrftoken);
                     }
@@ -123,11 +119,18 @@
     </script>
 
     <script>
-        $("#textRankBtn").click(function() {
-           if($("#originalText").val() != 0) {
-               var param = {
-                   "originalText" : $("#originalText").val()
-               }
+        $("#textRankBtn").click(function () {
+            if ($("#originalText").val() != 0) {
+                var param = {
+                    "originalText": $("#originalText").val(),
+                    "stopwords": $("#stopwords").val()
+                }
+
+                for (var i = 0; i < 3; i++) {
+                    $("#sentence" + (i + 1)).val()
+                    $("#keyword" + (i + 1)).val()
+                }
+                $("#textLength").val()
 
                 console.log("ajax param: ", param);
                 $.ajax({
@@ -135,21 +138,33 @@
                     url: '{% url 'ml:textrank' %}',
                     data: param,
                     dataType: 'json',
-                    success: function(result) {
-                        for(var i=0; i<result.sentence.length; i++){
-                            $("#sentence" + (i+1)).val(result.sentence[i]);
+                    success: function (result) {
+                        console.log("result: ", result);
+                        for (var i = 0; i < result.sentence.length; i++) {
+                            if (i == 0) {
+                                for (var j = 0; j < result.sentence[i].length; j++) {
+                                    $("#sentence" + (j + 1)).val(result.sentence[i][j]);
+                                }
+                            } else if (i == 1) {
+                                for (var k = 0; k < result.sentence[i].length; k++) {
+                                    $("#sentence" + (k + 1)).val($("#sentence" + (k + 1)).val() + "	" + result.sentence[i][k])
+                                }
+                            }
                         }
-                        for(var i=0; i<result.keyword.length; i++) {
-                            $("#keyword" + (i+1)).val(result.keyword[i]);
+
+                        for (var i = 0; i < result.keyword.length; i++) {
+                            $("#keyword" + (i + 1)).val(result.keyword[i]);
                         }
+
+                        $("#textLength").val($("#originalText").val().length);
                     },
-                    error: function(error) {
+                    error: function (error) {
                         console.log("error: ", error);
                     }
                 })
-           } else {
-               alert("원문 텍스트를 입력해 주세요");
-           }
+            } else {
+                alert("원문 텍스트를 입력해 주세요");
+            }
         });
     </script>
 

@@ -18,10 +18,12 @@ def textrank(request):
     # sentence = ['안녕하세요', '저는 김호근입니다', '반갑습니다']
     # keyword = ['안녕', '저는', '김호근']
     context = request.POST['originalText']
-    tr = TextRank(context)
+    stopwords = request.POST['stopwords']
+
+    tr = TextRank(context, stopwords)
     sentence = tr.summarize()
     keyword = tr.summaryKeyword()
-    print("원문: {}".format(context))
+    # print("원문: {}".format(context))
     print("요약 문장: {}".format(sentence))
     print("요약 키워드: {}".format(keyword))
 
