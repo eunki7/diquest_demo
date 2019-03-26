@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Support
+from .models import Support, models
 
 
 class SupportAdmin(admin.ModelAdmin):
@@ -11,3 +11,21 @@ class SupportAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Support, SupportAdmin)
+
+
+class ShowMorpheme(models.Model):
+    permissions = (
+        ("show_morpheme", "morph Show to Main Menu"),
+    )
+
+
+class ShowML(models.Model):
+    permissions = (
+        ("show_ml", "ml Show to Main Menu"),
+    )
+
+
+class ShowRTC(models.Model):
+    permissions = (
+        ("show_rtc", "rtc Show to Main Menu"),
+    )
