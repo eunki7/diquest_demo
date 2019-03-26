@@ -43,22 +43,15 @@
 <!-- first line MENU -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
+
         <ul class="nav navbar-nav">
             <li class="active"><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'product:index' %}">Product</a></li>
             <li><a href="{% url 'support:index' %}">Support</a></li>
             <li><a href="{% url 'photo:index' %}">Photo</a></li>
-            {% if 'support.view_showmorpheme' in user.get_group_permissions %}
             <li><a href="{% url 'morpheme:morpheme_index' %}">Morpheme</a></li>
-            {% endif %}
-            {% if 'support.view_showml' in user.get_group_permissions %}
             <li><a href="{% url 'ml:index' %}">ML</a></li>
-            {% endif %}
-            {% if 'support.view_showrtc' in user.get_group_permissions %}
-            <li><a href="{% url 'rtc:index' %}">RTC</a></li>
-            {% endif %}
 
-            {% if user.is_active %}
             <li class="menu-item dropdown">
                 <a class="dropdown-toggle" href="#" data-toggle="dropdown">Add<b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -78,15 +71,12 @@
                     <li><a href="{% url 'photo:photo_change' %}">Photo</a></li>
                 </ul>
             </li>
-            {% endif %}
 
             <li class="menu-item dropdown">
                 <a class="dropdown-toggle" href="#" data-toggle="dropdown">Util<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="{% url 'support:search' %}">Search</a></li>
-                    {% if user.is_staff %}
-                        <li><a href="{% url 'admin:index' %}">Admin</a></li>
-                    {% endif %}
+                    <li><a href="{% url 'admin:index' %}">Admin</a></li>
                 </ul>
             </li>
         </ul>
