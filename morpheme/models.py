@@ -21,7 +21,8 @@ date_input_format = ['%Y-%m-%d %H:%M:%S']
 class MorphemeAnalysisModel(models.Model):
     auto_increment_id = models.AutoField(primary_key=True, default=uuid.uuid1)
     raw_sentence = models.CharField(max_length=300, verbose_name='원문 문장', name='raw_sentence')
-    slug = models.SlugField(unique=True, allow_unicode=True, help_text='one word for title alias.', name='slug', default=uuid.uuid1)
+    slug = models.SlugField(unique=True, allow_unicode=True, help_text='one word for title alias.', name='slug',
+                            default=uuid.uuid1)
     morpheme_type = models.CharField(max_length=1, verbose_name='형태소분석기', choices=morpheme_lists, name='morpheme_type')
     file = models.FileField(
         upload_to='files/%Y/%m',
@@ -87,3 +88,12 @@ class Morpheme(models.Model):
 
     def __del__(self):
         print("delete object")
+
+
+class MorphMenu(models.Model):
+    class Meta:
+        managed = False
+
+        permissions = (
+            ("showmenu", "Show to Main Menu"),
+        )
