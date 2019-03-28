@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-{% block title %}home.html{% endblock %}
+{% block title %}Diquest Demo Project{% endblock %}
 
 {% block extra-style %}
 
@@ -27,18 +27,6 @@
     top: 77%;
     color: #cc0;
     font-style: italic;
-}
-
-footer.footer-wrapper {
-    background: #456;
-    color: #eee;
-    line-height: 50px;
-}
-.footer-wrapper a {
-    color: #ff9;    /* footer-right text */
-}
-.footer-wrapper a:hover {
-    color: #0ff;
 }
 
 </style>
@@ -77,45 +65,3 @@ footer.footer-wrapper {
     </div>
 
 {% endblock content %}
-
-{% block footer %}
-<footer class="navbar-fixed-bottom footer-wrapper">
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-5">
-                <p>
-                    Copyright &copy; 2019 Diquest by ekkim
-                </p>
-            </div>
-            <nav class="col-md-7">
-                <ul class="list-inline pull-right">
-                    <li>
-                        <a href="#" rel="tooltip" data-placement="top" data-original-title="준비중입니다">link1</a>
-                    </li>
-                    <li>
-                        <a href="#" rel="tooltip" data-placement="top" data-original-title="준비중입니다">link2</a>
-                    </li>
-                    <li>
-                        <a href="#" rel="tooltip" data-placement="top" data-original-title="준비중입니다">link3</a>
-                    </li>
-                    <li>
-                        <a href="#" rel="tooltip" data-placement="top" data-original-title="준비중입니다">link4</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-
-</footer>
-{% endblock footer %}
-
-{% block extra-script %}
-<script>
-$(function () {
-    $('[rel=tooltip]').tooltip({
-        delay: {show:10, hide:100}
-    });
-});
-</script>
-{% endblock extra-script %}
