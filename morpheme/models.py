@@ -23,7 +23,7 @@ class MorphemeAnalysisModel(models.Model):
     raw_sentence = models.CharField(max_length=300, verbose_name='원문 문장', name='raw_sentence')
     slug = models.SlugField(unique=True, allow_unicode=True, help_text='one word for title alias.', name='slug',
                             default=uuid.uuid1)
-    morpheme_type = models.CharField(max_length=1, verbose_name='형태소분석기', choices=morpheme_lists, name='morpheme_type')
+    morpheme_type = models.CharField(max_length=10, verbose_name='형태소분석기', choices=morpheme_lists, name='morpheme_type')
     file = models.FileField(
         upload_to='files/%Y/%m',
         name='file',
@@ -33,7 +33,7 @@ class MorphemeAnalysisModel(models.Model):
         validators=[FileExtensionValidator(["csv"], message="CSV 파일만 허용 가능")]
     )
 
-    reg_date = models.DateTimeField(auto_now_add=True)
+    reg_date = models.DateTimeField(auto_now=True)
 
     user_name = models.CharField(max_length=20)
 

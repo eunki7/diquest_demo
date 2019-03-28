@@ -35,7 +35,7 @@
                                 {{ result }} - {{ index }} -
                             </li>
                             {{ result_set.morpheme_type }}
-                            aaaaaaaa : {{ morpheme_type }}
+{#                            aaaaaaaa : {{ morpheme_type }}#}
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
         let sentence_result = new Vue({
             el: '#sentence-result'
             , data: {
-                result_set: [1,2,3,4,5]
+                result_set: []
             },
             methods: {
                 sentence_analyze: function () {
