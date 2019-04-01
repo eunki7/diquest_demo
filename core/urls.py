@@ -14,13 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('support/', include('support.urls'))
 """
 from django.conf import settings
+from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+# Load core plotly apps - this triggers their registration
 from .views import HomeView, UserCreateView, UserCreateDoneTV
-
-
+import core.plotly_apps    # pylint: disable=unused-import
+import core.dash_apps      # pylint: disable=unused-import
+import core.bootstrap_app  # pylint: disable=unused-import
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,6 +41,7 @@ urlpatterns = [
     path('ml/', include('ml.urls')),
     path('rtc/', include('rtc.urls')),
 
-    path('accounts/register/add/', UserCreateDoneTV.as_view(), name='register_add')
+    path('accounts/register/add/', UserCreateDoneTV.as_view(), name='register_add'),
+    url('^django_plotly_dash/', include('django_plotly_dash.urls')),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

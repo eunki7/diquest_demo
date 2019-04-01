@@ -1,49 +1,44 @@
 {% load staticfiles widget_tweaks %}
 
 
+
+
 {% block content %}
     {#    <h1>문장별 실시간 형태소 분석 - {{user}}</h1>#}
     {#    <p class="text-muted">아래 입력창에서 형태소 분석엔진을 선택하고 문장을 입력해주세요.</p>#}
     <div id="sentence-result">
         <form id="sentence_form" class="form-horizontal" action="." method="post" onsubmit="return false">{% csrf_token %}
+            <div class="form-group">
+                <label for="id_morpheme_type" class="col-sm-3 control-label">{{ form.morpheme_type.label }}</label>
+                <div class="col-sm-8">
+                    {{ form.morpheme_type|add_class:"form-control" }}
+                </div>
+            </div>
 
-            <fieldset style="border:1px solid #ccc; padding:20px 0 0 0;">
-                <div class="form-group">
-                    <label for="id_morpheme_type" class="col-sm-3 control-label">{{ form.morpheme_type.label }}</label>
-                    <div class="col-sm-8">
-                        {{ form.morpheme_type|add_class:"form-control" }}
+            <div class="form-group">
+                <label for="id_raw_sentence" class="col-sm-3 control-label">{{ form.raw_sentence.label }}</label>
+
+                <div class="col-sm-8">
+                    <div class="input-group">
+                        {{ form.raw_sentence|add_class:"form-control" }}
+                        <span class="input-group-addon" v-on:click="sentence_analyze"><i
+                                class="glyphicon glyphicon-search"></i></span>
                     </div>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label for="id_raw_sentence" class="col-sm-3 control-label">{{ form.raw_sentence.label }}</label>
-
-                    <div class="col-sm-8">
-                        <div class="input-group">
-                            {{ form.raw_sentence|add_class:"form-control" }}
-                            <span class="input-group-addon" v-on:click="sentence_analyze"><i
-                                    class="glyphicon glyphicon-search"></i></span>
-                        </div>
+            <div class="form-group">
+                <label for="id_parsed_sentence" class="col-sm-3 control-label">변환 문장</label>
+                <div class="col-sm-8">
+                    <div class="alert alert-info" >
+                        <p v-for='result in result_set' v-text="result"id="result_info">
+                        </p>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="id_parsed_sentence" class="col-sm-3 control-label">변환 문장</label>
-                    <div class="col-sm-8">
-                        <div class="alert alert-info" id="result_info">
-                            <li v-for='result in result_set' v-text="result">
-                                {{ result }} - {{ index }} -
-                            </li>
-                            {{ result_set.morpheme_type }}
-{#                            aaaaaaaa : {{ morpheme_type }}#}
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
+            </div>
         </form>
     </div>
     <script>
-
         let sentence_result = new Vue({
             el: '#sentence-result'
             , data: {
@@ -63,24 +58,18 @@
                     if (morpheme_type_param != '' && raw_sentence_param != '') {
                         //axios.post('/morpheme/sentence/', params).then(response => {
                         axios.post('/morpheme/sentence/', params).then(response => {
+                            $("#result_info").empty();
+                            $.each(response.data.result_sentence, function(index, value){
+                                this.result_set.push(value);
 
-                            this.result_set.push(
-                                {morpheme_type: response.data.morpheme_type},
-                                {result_sentence: response.data.result_sentence},
-                                {total_memory: response.data.total_memory},
-                                {user_name: response.data.user_name},
-                                {total_time: response.data.total_time}
-                            )
+                            });
+                            console.log(this.result_set);
+                            {#this.result_set = response.data.result_sentence#}
+                            {#{morpheme_type: response.data.morpheme_type},#}
+                            {#    {total_memory: response.data.total_memory},#}
+                            {#    {user_name: response.data.user_name},#}
+                            {#    {total_time: response.data.total_time}#}
 
-                            /*
-                            this.result_set.morpheme_type = JSON.stringify(response.data.morpheme_type);
-                            this.result_set.result_sentence = JSON.stringify(response.data.result_sentence);
-                            this.result_set.total_memory = JSON.stringify(response.data.total_memory);
-                            this.result_set.user_name = JSON.stringify(response.data.user_name);
-                            this.result_set.total_time = JSON.stringify(response.data.total_time);
-*/
-
-                            console.log(this.result_set)
                         });
 
                     } else {

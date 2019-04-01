@@ -22,7 +22,7 @@ SECRET_KEY = 'jd0fer!vx@-xji%v0@yeq(oi5p0$+k571q6*l5gw04&*cod7k('
 DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '58.72.188.47']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
@@ -46,6 +46,11 @@ INSTALLED_APPS = [
     'morpheme.apps.MorphemeConfig',
     'ml.apps.MlConfig',
     'rtc.apps.RtcConfig',
+
+    # django-plotly-dash
+    'channels',
+    'bootstrap4',
+    'django_plotly_dash.apps.DjangoPlotlyDashConfig',
 ]
 
 MIDDLEWARE = [
@@ -56,6 +61,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # django-plotly-dash
+    'django_plotly_dash.middleware.BaseMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -78,24 +86,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+ASGI_APPLICATION = 'core.routing.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dq_demo',
-        'USER': 'diquest',
-        'PASSWORD': 'ek2znptm2',
-        'HOST': '58.72.188.46',
-        'PORT': '3306'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -148,11 +147,26 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Plotly dash settings
+
+PLOTLY_DASH = {
+    "ws_route": "ws/channel",
+
+    "insert_demo_migrations": True,  # Insert model instances used by the demo
+
+    "http_poke_enabled": True,  # Flag controlling availability of direct-to-messaging http endpoint
+
+    "view_decorator": None,  # Specify a function to be used to wrap each of the dpd view functions
+
+    "cache_arguments": True,  # True for cache, False for session-based argument propagation
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+# django_plotly_dash
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # eunki7
 
@@ -167,3 +181,24 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'core', 'media')
 # for django-disqus app
 DISQUS_WEBSITE_SHORTNAME = 'pythonwebprogramming'
 SITE_ID = 1
+
+# Staticfiles finders for locating dash app assets and related files
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+
+    'django_plotly_dash.finders.DashAssetFinder',
+    'django_plotly_dash.finders.DashComponentFinder',
+]
+
+# Plotly components containing static content that should
+# be handled by the Django staticfiles infrastructure
+
+PLOTLY_COMPONENTS = [
+    'dash_core_components',
+    'dash_html_components',
+    'dash_bootstrap_components',
+    'dash_renderer',
+    'dpd_components',
+]
