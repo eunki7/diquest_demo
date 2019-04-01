@@ -73,8 +73,8 @@ def display_content(value):
         group_key = 'tag'
 
     # if groupby_key != 'render':
-    queryset = MorphemeAnalysisModel.objects.only('raw_sentence').order_by('-auto_increment_id').first()
-    df = pd.read_json(queryset.raw_sentence)
+    queryset = MorphemeAnalysisModel.objects.only('df_to_json').order_by('-auto_increment_id').first()
+    df = pd.read_json(queryset.df_to_json)
     df = df.groupby([group_key]).size().rename('size').reset_index()
     df = df.sort_values(by=['size'], ascending=False)
     label_list = df[group_key].values.tolist()

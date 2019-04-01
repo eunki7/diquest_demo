@@ -38,11 +38,12 @@ class MorphemeMainCreateView(LoginRequiredMixin, CreateView):
     initial = {'slug': 'auto-filling-do-not-input'}
     success_url = reverse_lazy('morpheme:morpheme_index')
 
-    df = pandas.DataFrame([('키워드 차트 보기를 클릭해주세요','키워드 차트 보기를 클릭해주세요')], columns=['keyword', 'tag'])
-    df_to_json = df.reset_index().to_json(orient='records')
+    df = pandas.DataFrame([('키워드 차트 보기를 클릭해주세요', '키워드 차트 보기를 클릭해주세요')], columns=['keyword', 'tag'])
+    df_to_json = df.reset_index().to_json(orient='records', force_ascii=False)
 
-    init_model = MorphemeAnalysisModel(raw_sentence=df_to_json, morpheme_type='none', user_name='admin')
+    init_model = MorphemeAnalysisModel(df_to_json=df_to_json, morpheme_type='none', user_name='admin')
     init_model.save()
+
 
 class SentenceAnalyzeLV(ListView):
     template_name = 'morpheme/morpheme_list.html'
@@ -78,9 +79,10 @@ class SentenceAnalyzeLV(ListView):
         test_list = list(result_sentence)
 
         df = pandas.DataFrame(test_list, columns=['keyword', 'tag'])
-        df_to_json = df.reset_index().to_json(orient='records')
+        df_to_json = df.reset_index().to_json(orient='records', force_ascii=False)
 
-        model = MorphemeAnalysisModel(raw_sentence=df_to_json, morpheme_type=morpheme_type, user_name=user_name)
+
+        model = MorphemeAnalysisModel(raw_sentence=sentence, df_to_json=df_to_json, morpheme_type=morpheme_type, user_name=user_name)
         model.save()
 
         return JsonResponse(context, json_dumps_params={'ensure_ascii': True})

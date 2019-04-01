@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.text import slugify
 from konlpy.tag import *
 import uuid
+import datetime
 
 morpheme_lists = (
     ('', u'선택'),
@@ -19,8 +20,9 @@ date_input_format = ['%Y-%m-%d %H:%M:%S']
 
 
 class MorphemeAnalysisModel(models.Model):
-    auto_increment_id = models.AutoField(primary_key=True, default=uuid.uuid1)
+    auto_increment_id = models.AutoField(primary_key=True, default=1)
     raw_sentence = models.CharField(max_length=300, verbose_name='원문 문장', name='raw_sentence')
+    df_to_json = models.TextField(verbose_name='변환 문장', name='df_to_json')
     slug = models.SlugField(unique=True, allow_unicode=True, help_text='one word for title alias.', name='slug',
                             default=uuid.uuid1)
     morpheme_type = models.CharField(max_length=10, verbose_name='형태소분석기', choices=morpheme_lists, name='morpheme_type')
@@ -33,7 +35,7 @@ class MorphemeAnalysisModel(models.Model):
         validators=[FileExtensionValidator(["csv"], message="CSV 파일만 허용 가능")]
     )
 
-    reg_date = models.DateTimeField(auto_now=True)
+    reg_date = models.DateTimeField()
 
     user_name = models.CharField(max_length=20)
 
@@ -44,8 +46,10 @@ class MorphemeAnalysisModel(models.Model):
     def save(self, *args, **kwargs):
         if not self.auto_increment_id:
             self.slug = slugify(self.slug, allow_unicode=True)
+            # self.auto_increment_id = MorphemeAnalysisModel.objects.count() + 1
         else:
-            self.auto_increment_id = MorphemeAnalysisModel.objects.count()
+            self.auto_increment_id = MorphemeAnalysisModel.objects.count() + 1
+            self.reg_date = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         super(MorphemeAnalysisModel, self).save(*args, **kwargs)
 
 

@@ -107,7 +107,7 @@ DATABASES = {
         'PORT': '3306'
     }
 }
-
+DATABASE_OPTIONS = {'charset': 'utf8'}
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
