@@ -33,7 +33,8 @@ urlpatterns = [
     path('accounts/register/', UserCreateView.as_view(), name='register'),
     path('accounts/register/done/', UserCreateDoneTV.as_view(), name='register_done'),
 
-    path('', HomeView.as_view(), name='home'),
+    # path('', HomeView.as_view(), name='home'),
+    path('', include('product.urls')),
     path('product/', include('product.urls')),
     path('support/', include('support.urls')),
     path('photo/', include('photo.urls')),
