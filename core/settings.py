@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     # 3rd-party apps
     'django.contrib.sites',
     'tagging.apps.TaggingConfig',
-    'disqus',
     'widget_tweaks',  # for bootstrap field styling
 
     # diquest apps
@@ -186,11 +185,6 @@ LOGIN_REDIRECT_URL = '/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'core', 'media')
-
-# 후에 교육 때 다이퀘스트 계정으로 변경
-# for django-disqus app
-DISQUS_WEBSITE_SHORTNAME = 'pythonwebprogramming'
-SITE_ID = 1
 
 # Staticfiles finders for locating dash app assets and related files
 
