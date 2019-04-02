@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'morpheme.apps.MorphemeConfig',
     'ml.apps.MlConfig',
     'rtc.apps.RtcConfig',
+    'knowledge.apps.KnowledgeConfig',
 
     # django-plotly-dash
     'channels',
