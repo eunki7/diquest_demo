@@ -100,25 +100,25 @@
                     {% if user.is_staff %}
 
                     <li class="dropdown-submenu">
-                        <a href="{% url 'support:index' %}" >Knowledge 1</a>
+                        <a href="{% url 'knowledge:index' %}" >Knowledge 1</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'product:add' %}">Add</a></li>
-                            <li><a class="dropdown-item" href="{% url 'product:change' %}">Change</a></li>
+                            <li><a class="dropdown-item" href="{% url 'knowledge:add' %}">Add</a></li>
+                            <li><a class="dropdown-item" href="{% url 'knowledge:change' %}">Change</a></li>
                         </ul>
                     </li>
 
                     <li class="dropdown-submenu">
-                        <a href="{% url 'support:index' %}" >Knowledge 2</a>
+                        <a href="{% url 'knowledge:index' %}" >Knowledge 2</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'product:add' %}">Add</a></li>
-                            <li><a class="dropdown-item" href="{% url 'product:change' %}">Change</a></li>
+                            <li><a class="dropdown-item" href="{% url 'knowledge:add' %}">Add</a></li>
+                            <li><a class="dropdown-item" href="{% url 'knowledge:change' %}">Change</a></li>
                         </ul>
                     </li>
 
                     {% else %}
 
-                    <li><a href="{% url 'support:index' %}">Knowledge 1</a></li>
-                    <li><a href="{% url 'support:index' %}">Knowledge 2</a></li>
+                    <li><a href="{% url 'knowledge:index' %}">Knowledge 1</a></li>
+                    <li><a href="{% url 'knowledge:index' %}">Knowledge 2</a></li>
 
                     {% endif %}
 

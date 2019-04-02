@@ -3,7 +3,6 @@ from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
-from tagging.fields import TagField
 import os
 
 
@@ -14,7 +13,6 @@ class Knowledge(models.Model):
     content = models.TextField('CONTENT')
     create_date = models.DateTimeField('Create Date', auto_now_add=True)
     modify_date = models.DateTimeField('Modify Date', auto_now=True)
-    tag = TagField()
     attach_file = models.FileField(
         upload_to='files/%Y/%m',
         name='file',

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Knowledge List{% endblock %}
+
+{% block content %}
+
+<h1>Knowledge List</h1>
+
+    {% for knowledge in knowledges %}
+        <h2><a href='{{ knowledge.get_absolute_url }}'>{{ knowledge.title }}</a></h2>
+        {{ knowledge.modify_date|date:"N d, Y" }}
+        <p>{{ knowledge.description }}</p>
+            {% if knowledge.file %}
+                <a href="{{ knowledge.get_file_absolute_url }} {# knowledge.file.url 사용 가능 #}">다운로드</a>
+                {% if knowledge.get_file_extension == 'pdf' %}
+                    <a href="{{ knowledge.get_file_pdf_id_url }}">PDF Viewer</a>
+                {%  endif %}
+            {%  endif %}
+
+    {% endfor %}
+
+    <br/>
+    <div>
+        <span>
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">PreviousPage</a>
+            {% endif %}
+
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">NextPage</a>
+            {% endif %}
+        </span>
+
+    </div>
+
+{% endblock %}

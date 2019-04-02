@@ -41,6 +41,7 @@ urlpatterns = [
     path('morpheme/', include('morpheme.urls')),
     path('ml/', include('ml.urls')),
     path('rtc/', include('rtc.urls')),
+    path('knowledge/', include('knowledge.urls')),
 
     path('accounts/register/add/', UserCreateDoneTV.as_view(), name='register_add'),
     url('^django_plotly_dash/', include('django_plotly_dash.urls')),
