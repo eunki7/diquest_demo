@@ -209,3 +209,5 @@ PLOTLY_COMPONENTS = [
     'dash_renderer',
     'dpd_components',
 ]
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 26214400
