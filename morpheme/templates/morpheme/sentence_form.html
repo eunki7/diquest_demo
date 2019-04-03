@@ -30,8 +30,8 @@
             <div class="form-group">
                 <label for="id_parsed_sentence" class="col-sm-3 control-label">변환 문장</label>
                 <div class="col-sm-8">
-                    <div class="alert alert-info" >
-                        <p v-for='result in result_set' v-text="result"id="result_info">
+                    <div class="alert alert-info" id="result_info">
+                        <p v-for='result in result_set' v-text="result">
                         </p>
                     </div>
                 </div>
@@ -59,10 +59,7 @@
                         //axios.post('/morpheme/sentence/', params).then(response => {
                         axios.post('/morpheme/sentence/', params).then(response => {
                             $("#result_info").empty();
-                            $.each(response.data.result_sentence, function(index, value){
-                                this.result_set.push(value);
-
-                            });
+                            this.result_set = response.data.result_sentence
                             console.log(this.result_set);
                             {#this.result_set = response.data.result_sentence#}
                             {#{morpheme_type: response.data.morpheme_type},#}

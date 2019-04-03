@@ -6,7 +6,7 @@ class SentenceForm(forms.Form):
     morpheme_choices = (
         ('', u'선택'),
         ('mecab', u'mecab'),
-        ('jiana', u'jiana'),
+        # ('jiana', u'jiana'),
         ('kkma', u'kkma'),
         ('komoran', u'komoran'),
         ('okt', u'okt'),
