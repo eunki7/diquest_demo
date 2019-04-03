@@ -30,7 +30,6 @@ dash-table==3.5.0
 decorator==4.3.2
 Django==2.1.7
 django-bootstrap4==0.0.8
-django-disqus==0.5
 # Editable install with no version control (django-plotly-dash==0.9.8)
 -e c:\users\dell\anaconda3\envs\diquest_demo\lib\site-packages
 django-redis==4.10.0
@@ -131,3 +130,5 @@ Werkzeug==0.14.1
 wincertstore==0.2
 wrapt==1.11.1
 zope.interface==4.6.0
+tensorflow==1.13.1
+keras==2.2.4

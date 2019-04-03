@@ -17,7 +17,7 @@ class ProductDV(DetailView):
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
-    fields = ['title', 'url']
+    fields = ['title', 'image', 'url']
     success_url = reverse_lazy('product:index')
 
     def form_valid(self, form):
@@ -34,7 +34,7 @@ class ProductChangeLV(LoginRequiredMixin, ListView):
 
 class ProductUpdateView(LoginRequiredMixin, OwnerRequiredMixin, UpdateView):
     model = Product
-    fields = ['title', 'url']
+    fields = ['title', 'image', 'url']
     success_url = reverse_lazy('product:index')
 
 

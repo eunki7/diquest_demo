@@ -11,6 +11,7 @@
         <thead>
         <tr class="info">
             <th>Title</th>
+            <th>Image</th>
             <th>Url</th>
             <th>Owner</th>
             <th>Update</th>
@@ -22,6 +23,7 @@
         {% for item in object_list %}
         <tr>
             <td>{{ item.title }}</td>
+            <td>{{ item.image }}</td>
             <td>{{ item.url }}</td>
             <td>{{ item.owner }}</td>
             <td><a href="{% url 'product:update' item.id %}">Update</a></td>
