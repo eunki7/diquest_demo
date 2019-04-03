@@ -81,7 +81,6 @@ class SentenceAnalyzeLV(ListView):
         df = pandas.DataFrame(test_list, columns=['keyword', 'tag'])
         df_to_json = df.reset_index().to_json(orient='records', force_ascii=False)
 
-
         model = MorphemeAnalysisModel(raw_sentence=sentence, df_to_json=df_to_json, morpheme_type=morpheme_type, user_name=user_name)
         model.save()
 
@@ -100,7 +99,9 @@ class FileAnalyzeLV(ListView):
         morpheme_list = Morpheme.pos_list(morpheme_object, data_frame)
         del morpheme_object
         jpype.java.lang.System.gc()
-        model = MorphemeAnalysisModel(raw_sentence=filename, morpheme_type=file_morpheme_type, file=request.FILES['csv_file'])
+
+        print(filename)
+        model = MorphemeAnalysisModel(df_to_json=filename, morpheme_type=file_morpheme_type, file=request.FILES['csv_file'])
         model.save()
 
         return JsonResponse(self.get_data(file_morpheme_type, morpheme_list))
