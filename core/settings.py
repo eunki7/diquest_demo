@@ -26,7 +26,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '58.72.188.47']
 
 # Application definition
 INSTALLED_APPS = [
-    'django.contrib.admin',
+
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -51,6 +51,10 @@ INSTALLED_APPS = [
     'channels',
     'bootstrap4',
     'django_plotly_dash.apps.DjangoPlotlyDashConfig',
+
+    #django-suit
+    'core.suit',
+    'core.admin',
 ]
 
 MIDDLEWARE = [
