@@ -11,7 +11,7 @@ class ProductLV(ListView):
     model = Product
 
 
-class ProductDV(DetailView):
+class ProductDV(LoginRequiredMixin, DetailView):
     model = Product
 
 
