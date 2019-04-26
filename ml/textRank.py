@@ -4,6 +4,8 @@ from __future__ import division, unicode_literals
 
 import re
 import itertools
+
+import jpype
 import networkx
 import collections
 
@@ -56,8 +58,8 @@ def co_occurrence(sentence1, sentence2):
 
 
 class Sentence:
-
     def __init__(self, text, index=0):
+        jpype.attachThreadToJVM()
         self.index = index
         self.text = text
         # _stopwords(금지어)에 있는 명사제외하고 꼬꼬마에서 명사추출
