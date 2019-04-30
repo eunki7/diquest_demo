@@ -22,7 +22,7 @@ SECRET_KEY = 'jd0fer!vx@-xji%v0@yeq(oi5p0$+k571q6*l5gw04&*cod7k('
 DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '58.72.188.47']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '58.72.188.47', '133.186.171.46', 'tasvc.diquest.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'django_plotly_dash.apps.DjangoPlotlyDashConfig',
 
-    #django-suit
+    # django-suit
     'core.suit',
     'core.admin',
 ]
@@ -107,7 +107,7 @@ DATABASES = {
         'NAME': 'dq_demo',
         'USER': 'diquest',
         'PASSWORD': 'ek2znptm2',
-        'HOST': '58.72.188.46',
+        'HOST': '133.186.171.46',
         'PORT': '3306'
     }
 }

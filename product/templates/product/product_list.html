@@ -4,24 +4,20 @@
 
 {% block content %}
 
-    <h1>Product List</h1>
+    <div class="row">
 
-    <ul style=" font-size: x-large; ">
-{#        <li><img src="{{ product.image.thumb_url }}" style="width:100%"><a href="{% url 'product:detail' product.id %}">{{ product }}</a></li>#}
-        <div class="row">
-            {% for product in object_list %}
-            <div class="col-sm-3 col-md-3">
-                <div class="thumbnail">
-                    <a href="{% url 'product:detail' product.id %}">
-                        <img src="{{ product.image.thumb_url }}" alt="{{ product.title }}">
-                        <div class="caption" style="text-align: center;">
-                            <h3>{{ product.title }}</h3>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            {% endfor %}
+        <div class="product_wrap">
+            <p><img src="static/img/product_t1.png" width="875" height="172" alt=""/></p>
+
+                <ul class="product_list">
+                    <li><a href="http://tademo.diquest.com:8000/5/" class="icon1">녹취분석시스템</a></li>
+                    <li><a href="http://tademo.diquest.com:8000/6/" class="icon2">실시간상담코칭(Advisor)시스템</a></li>
+                    <li><a href="http://tademo.diquest.com:8000/7/" class="icon3">TA분석시스템(라이트버전)</a></li>
+                    <li><a href="http://tademo.diquest.com:8000/8/" class="icon4">상담사 품질 평가시스템</a></li>
+                </ul>
         </div>
-    </ul>
+
+    </div>
+
 
 {% endblock %}

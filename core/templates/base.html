@@ -39,13 +39,14 @@
 
 </head>
 
-<body style="padding-top:90px;">
+<body style="padding-top:70px;" class="bg_product">
 
 <!-- first line MENU -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <ul class="nav navbar-nav">
 {#            <li class="active"><a href="{% url 'home' %}">Home</a></li>#}
+            <li><h1 class="logo" title="NHN다이퀘스트"></h1></li>
 
             {% if user.is_staff %}
             <li class="menu-item dropdown">
@@ -214,7 +215,7 @@ $(function () {
         <div class="row">
             <div class="col-md-5">
                 <p>
-                    Copyright &copy; 2019 Diquest Inc. All Rights Reserved.
+                    Copyright &copy; 2019 NHN Diquest Inc. All Rights Reserved.
                 </p>
             </div>
             <nav class="col-md-7">

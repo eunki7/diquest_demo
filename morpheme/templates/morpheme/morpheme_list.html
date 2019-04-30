@@ -3,14 +3,11 @@
 {% block title %}morpheme_list.html{% endblock %}
 {% load plotly_dash %}
 {% block content %}
+
     <div class="container">
 
-
-        <h1>Morpheme Analysis</h1>
-
-        <hr style="margin:0 0 20px 0;">
-        <div>
-            <div class="row">
+        <h1 class="title1">Morpheme Analysis<span class="sub_t">형태소 분석기</span></h1>
+            <div class="row white_w">
                 <!-- NEW WIDGET START -->
                 <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
 
@@ -18,7 +15,7 @@
 
                     <!-- end widget -->
 
-                    <div class="jarviswidget well transparent" id="wid-id-9" data-widget-colorbutton="false"
+                    <div class="jarviswidget transparent" id="wid-id-9" data-widget-colorbutton="false"
                          data-widget-editbutton="false" data-widget-togglebutton="false"
                          data-widget-deletebutton="false"
                          data-widget-fullscreenbutton="false" data-widget-custombutton="false"
@@ -45,7 +42,7 @@
 
                                 <div class="panel-group smart-accordion-default" id="accordion">
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">
+                                        <div class="panel-heading arrow">
                                             <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion"
                                                                        href="#collapseOne" class=""> <i
                                                     class="fa fa-lg fa-angle-down pull-right"></i> <i
@@ -53,7 +50,7 @@
                                             </a>
                                             </h4>
                                         </div>
-                                        <div id="collapseOne" class="panel-collapse collapse in" style="height: auto;">
+                                        <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;" aria-expanded="false">
                                             <div class="panel-body no-padding">
                                                 <table class="table table-bordered table-condensed">
                                                     <thead>
@@ -89,7 +86,7 @@
                                         </div>
                                     </div>
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">
+                                        <div class="panel-heading arrow">
                                             <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion"
                                                                        href="#collapseTwo" class="collapsed"> <i
                                                     class="fa fa-lg fa-angle-down pull-right"></i> <i
@@ -128,7 +125,7 @@
                                         </div>
                                     </div>
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">
+                                        <div class="panel-heading arrow">
                                             <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion"
                                                                        href="#collapseThree" class="collapsed"> <i
                                                     class="fa fa-lg fa-angle-down pull-right"></i> <i
@@ -171,6 +168,5 @@
                 <!-- WIDGET END -->
 
             </div>
-        </div>
     </div>
 {% endblock %}
