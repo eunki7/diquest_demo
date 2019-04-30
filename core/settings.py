@@ -22,7 +22,7 @@ SECRET_KEY = 'jd0fer!vx@-xji%v0@yeq(oi5p0$+k571q6*l5gw04&*cod7k('
 DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '58.72.188.47', '133.186.171.46', 'tasvc.diquest.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '58.72.188.47', '133.186.171.46', 'tademo.diquest.com']
 
 # Application definition
 INSTALLED_APPS = [
