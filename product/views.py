@@ -7,7 +7,7 @@ from core.views import OwnerRequiredMixin
 from .models import Product
 
 
-class ProductLV(ListView):
+class ProductLV(LoginRequiredMixin, ListView):
     model = Product
 
 

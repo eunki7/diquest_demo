@@ -77,16 +77,12 @@
 
                     {% if 'ml.showmenu' in user.get_group_permissions %}
                     <li><a href="{% url 'ml:index' %}">핵심문장 추출</a></li>
-                    {% endif %}
-{% comment %}
-                    <li><a href="{% url 'morpheme:morpheme_index' %}">형태소분석기</a></li>
-
-                    <li><a href="{% url 'ml:index' %}">핵심문장 추출</a></li>
-{% endcomment %}
 
                     <li><a href="#">상담분류</a></li>
 
                     <li><a href="#">불완전판매검사 모듈</a></li>
+
+                    {% endif %}
 
                 </ul>
             </li>
