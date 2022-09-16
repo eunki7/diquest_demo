@@ -130,5 +130,5 @@ Werkzeug==0.14.1
 wincertstore==0.2
 wrapt==1.11.1
 zope.interface==4.6.0
-tensorflow==1.13.1
+tensorflow==2.7.2
 keras==2.2.4
